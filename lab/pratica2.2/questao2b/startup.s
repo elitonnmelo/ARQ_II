@@ -49,9 +49,9 @@ fim_loop:
 
 main_loop:
     @chama a funação maiorElem
-    mov r6, #9           @ Configura r6 com o número de elementos (8) para o tamanho do vetor
+    mov r6, #11           @ Configura r6 com o número de elementos (8) para o tamanho do vetor
     bl maiorElem         @ Chama a função maiorElem
-    mov r6, #9           @ Configura r6 com o número de elementos (8) para o tamanho do vetor
+    mov r6, #11           @ Configura r6 com o número de elementos (8) para o tamanho do vetor
     ldr r0, =vetor1      @ Carrega o endereço do vetor em r0
     bl menorElem         @ Chama a função menorElem
 
@@ -66,7 +66,7 @@ main_loop:
 fim:
     nop
 
-vetor1: .word 4, 7, 9, 2, 6, 15, 3, 1  @ Vetor de entrada
+vetor1: .word 4, 7, 9, 2, 6, 15, 3, 12, 15, 23  @ Vetor de entrada
 maior:     .word 0   @ Aloca espaço para uma variável inteira inicializada com 0
 menor:     .word 0   @ Aloca espaço para uma variável inteira inicializada com 0
 resultado:   .word 0    @ Aloca espaço para uma variável inteira inicializada com 0
