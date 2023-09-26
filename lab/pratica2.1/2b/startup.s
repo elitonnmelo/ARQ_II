@@ -10,8 +10,12 @@ _start:
     ldr r1, =menor       @ Carrega o endereço onde o menor elemento será armazenado em r1
     ldr r2, =maior       @ Carrega o endereço onde o maior elemento será armazenado em r2
     ldr r3, =resultado   @ Carrega o endereço onde o resultado será armazenado em r1
-    mov r6, #9           @ Configura r6 com o número de elementos (8) para o tamanho do vetor
-    mov r7, #9           @ Configura r7 com o número de elementos (8) para o tamanho do vetor
+    ldr r8, [r0]
+	ldr r9, [r0]
+	str r8, [r1]
+	str r9, [r2]
+	mov r6, #4           @ Configura r6 com o número de elementos (8) para o tamanho do vetor
+    mov r7, #4           @ Configura r7 com o número de elementos (8) para o tamanho do vetor
 
     bl main_loop         @ Chama a função main_loop
 
@@ -22,8 +26,9 @@ maiorElem:
     beq menorElem        @ Se for, vai para a função menorElem
     sub r6, r6, #1       @ Decrementa o contador
     ldr r4, [r0], #4     @ Carrega um elemento de vetor1 e incrementa o ponteiro
-    cmp r4, r2           @ Compara o elemento com o maior elemento do vetor
-    bgt maiorElem        @ Se o elemento for maior, armazena ele como o maior elemento
+    ldr r10, [r2]
+	cmp r4, r10           @ Compara o elemento com o maior elemento do vetor
+    blt maiorElem        @ Se o elemento for maior, armazena ele como o maior elemento
     str r4, [r2]         @ Armazena o maior elemento
     b maiorElem          @ Volta para o início do loop
 
@@ -35,8 +40,9 @@ menorElem:
     beq fim_loop       @ Se for, vai para a função main_loop
     sub r7, r7, #1       @ Decrementa o contador
     ldr r4, [r0], #4     @ Carrega um elemento de vetor1 e incrementa o ponteiro
-    cmp r4, r1           @ Compara o elemento com o menor elemento do vetor
-    blt menorElem        @ Se o elemento for menor, armazena ele como o menor elemento
+    ldr r10, [r1]
+	cmp r4, r10           @ Compara o elemento com o menor elemento do vetor
+    bgt menorElem        @ Se o elemento for menor, armazena ele como o menor elemento
     str r4, [r1]         @ Armazena o menor elemento
     b menorElem          @ Volta para o início do loop
 
@@ -57,7 +63,7 @@ main_loop:
 fim:
     nop
 
-vetor1: .word 4, 7, 7, 5, 6, 15, 2, 1  @ Vetor de entrada
+vetor1: .word 4, 7, 9, 2, 6, 15, 3, 1  @ Vetor de entrada
 maior:     .word 0   @ Aloca espaço para uma variável inteira inicializada com 0
 menor:     .word 0   @ Aloca espaço para uma variável inteira inicializada com 0
 resultado:   .word 0    @ Aloca espaço para uma variável inteira inicializada com 0
