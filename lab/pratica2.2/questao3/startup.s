@@ -26,7 +26,7 @@ _start:
 
         @ Verifica se "n" é menor ou igual ao número de dias do mês atual
         cmp r0, r2
-        bls found_date  @ Se for menor ou igual, encontramos o mês
+        ble found_date  @ Se for menor ou igual, encontramos o mês
 
         @ Subtrai o número de dias do mês atual de "n"
         sub r0, r0, r2
